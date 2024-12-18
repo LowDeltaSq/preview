@@ -9,6 +9,7 @@ void loginValid(BuildContext context) async {
   String password = passwordController.text;
 
   Box tokensBox = await Hive.openBox('tokens');
+
   Dio dio = Dio();
   String baseUrl = 'http://10.0.2.2:53000';
 
@@ -18,7 +19,7 @@ void loginValid(BuildContext context) async {
       'password': password,
     });
 
-    if (response.data != null) {
+    if (response.data != null && response.data['token'] != null) {
       tokensBox.put('access', response.data['token']);
       Navigator.pushNamed(context, MainRoute);
     } else {

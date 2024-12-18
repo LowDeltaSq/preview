@@ -1,14 +1,19 @@
 import 'package:flutter/cupertino.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:preview/src/router/router.dart';
 import 'package:preview/src/screens/auth/login/login_screen.dart';
+import 'package:preview/src/screens/main/basket/basket_model.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   await Hive.initFlutter();
   await Hive.openBox('tokens');
+
   runApp(
-    MyApp(),
+    ChangeNotifierProvider(
+      create: (_) => BasketModel(),
+      child: const MyApp(),
+    ),
   );
 }
 

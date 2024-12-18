@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:preview/src/screens/auth/login/login_screen.dart';
-import 'package:preview/src/screens/auth/register/register_screen.dart';
+import 'package:preview/src/screens/main/basket/basket_screen.dart';
+import 'package:preview/src/screens/main/catalog/catalog_screen.dart';
+import 'package:preview/src/screens/main/profile/profile_screen.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -25,13 +27,13 @@ class MainScreen extends StatelessWidget {
               builder: (context) {
                 switch (index) {
                   case 0:
-                    return const LoginScreen();
+                    return const CatalogScreen();
                   case 1:
-                    return const RegisterScreen();
+                    return const BasketScreen();
                   case 2:
-                    return const LoginScreen();
+                    return const ProfileScreen();
                   default:
-                    return const RegisterScreen();
+                    return const LoginScreen();
                 }
               },
             );

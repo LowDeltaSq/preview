@@ -8,6 +8,17 @@ void registerValid(BuildContext context) async {
   String email = emailController.text;
   String password = passwordController.text;
 
+  if (!RegExp(r"^[a-zA-Z0-9._-]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,6}$")
+      .hasMatch(email)) {
+    _showErrorDialog(context, 'Введите корректный email');
+    return;
+  }
+
+  if (password.length < 8) {
+    _showErrorDialog(context, 'Пароль должен содержать минимум 8 символов');
+    return;
+  }
+
   Dio dio = Dio();
   String baseUrl = 'http://10.0.2.2:53000/register';
 
@@ -27,7 +38,7 @@ void registerValid(BuildContext context) async {
       _showErrorDialog(context, 'Ошибка регистрации');
     }
   } on DioException catch (e) {
-    _showErrorDialog(context, 'Ошибка: ${e.message}');
+    _showErrorDialog(context, 'Такой аккаунт уже зарегистрирован');
   }
 }
 
